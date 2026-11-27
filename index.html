@@ -269,8 +269,20 @@ const CHECKOUT_URL = "https://pay.hotmart.com/C108687956D";
 const PRECIO = "4,99 USD";
 // ============================================================================
 document.querySelectorAll('.precio').forEach(e => e.textContent = PRECIO);
+// Origen de la visita: ?src=facebook / ?src=instagram / ?src=tiktok (o utm_source)
+function origen() {
+  const q = new URLSearchParams(location.search);
+  let o = (q.get('src') || q.get('utm_source') || '').toLowerCase().replace(/[^a-z0-9_-]/g, '').slice(0, 30);
+  try {
+    if (o) localStorage.setItem('vat_src', o);
+    else o = localStorage.getItem('vat_src') || '';
+  } catch (e) {}
+  return o || 'web';
+}
 if (CHECKOUT_URL) {
-  document.querySelectorAll('a.buy').forEach(a => { a.href = CHECKOUT_URL; a.rel = "noopener"; });
+  const o = origen();
+  const url = CHECKOUT_URL + (CHECKOUT_URL.includes('?') ? '&' : '?') + 'sck=' + encodeURIComponent(o) + '&utm_source=' + encodeURIComponent(o);
+  document.querySelectorAll('a.buy').forEach(a => { a.href = url; a.rel = "noopener"; });
 } else {
   const av = document.getElementById('aviso-pago');
   if (av) av.textContent = "Muy pronto: el pago se está activando.";
