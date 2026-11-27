@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Vuelve a Ti · Test de entrada</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400;1,600&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--wine:#5A1A2C;--wine2:#7A2A3F;--gold:#D9B26F;--cream:#F7ECDF;--ink:#3B2229}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;font-family:Lora,serif;color:var(--cream);
+ background:radial-gradient(ellipse at 30% 10%,#7A2A3F 0%,#4A1626 45%,#1E070D 100%) fixed}
+.wrap{max-width:520px;margin:0 auto;padding:28px 20px 48px}
+.kicker{font-family:Poppins;font-weight:700;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--gold)}
+h1{font-family:Poppins;font-weight:700;font-size:30px;line-height:1.15;margin:12px 0 10px}
+h1 i{font-family:Lora;font-weight:400;color:var(--gold)}
+.lead{font-style:italic;color:#EBDCCB;font-size:17px;line-height:1.5}
+.btn{display:block;width:100%;border:0;border-radius:40px;padding:16px;font-family:Poppins;font-weight:700;font-size:15px;letter-spacing:.5px;
+ background:var(--gold);color:#2E0B15;cursor:pointer;margin-top:22px;text-align:center;text-decoration:none}
+.btn.ghost{background:transparent;color:var(--gold);border:1px solid var(--gold)}
+.bar{height:4px;background:rgba(217,178,111,.2);border-radius:4px;overflow:hidden;margin:6px 0 26px}
+.bar div{height:100%;background:var(--gold);width:0;transition:width .35s}
+.qn{font-family:Lora;font-style:italic;color:var(--gold);font-size:15px}
+.qt{font-family:Poppins;font-weight:700;font-size:22px;line-height:1.3;margin:6px 0 20px}
+.opt{display:block;width:100%;text-align:left;background:rgba(255,248,240,.06);border:1px solid rgba(217,178,111,.35);color:var(--cream);
+ border-radius:14px;padding:15px 16px;margin-bottom:11px;font-family:Lora;font-size:16px;line-height:1.4;cursor:pointer;transition:background .2s,border-color .2s}
+.opt:hover,.opt:focus{background:rgba(217,178,111,.14);border-color:var(--gold);outline:none}
+.opt.sel{background:var(--gold);color:#2E0B15;border-color:var(--gold)}
+.back{background:none;border:0;color:#C9AE8E;font-family:Poppins;font-size:13px;cursor:pointer;margin-top:8px;padding:6px 0}
+.card{background:#FBF5EE;color:var(--ink);border-radius:20px;padding:26px 22px;margin-top:18px}
+.card h2{font-family:Poppins;font-weight:700;color:var(--wine);font-size:26px;margin:6px 0 12px;line-height:1.2}
+.card .lab{font-family:Poppins;font-weight:700;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#B38B59;margin-top:16px;display:block}
+.card p{margin:4px 0 0;font-size:16px;line-height:1.55}
+.frase{background:linear-gradient(135deg,#5A1A2C,#2E0B15);color:var(--gold);border-radius:16px;padding:20px;text-align:center;
+ font-style:italic;font-size:20px;margin-top:20px;line-height:1.35}
+.scores{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}
+.sc{background:rgba(255,248,240,.07);border:1px solid rgba(217,178,111,.3);border-radius:12px;padding:10px 12px;font-family:Poppins;font-size:12px}
+.sc b{display:block;font-size:20px;color:var(--gold)}
+.fade{animation:f .35s ease}@keyframes f{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.note{font-size:13px;color:#C9AE8E;font-style:italic;margin-top:18px;text-align:center}
+</style></head>
+<body><main class="wrap" id="app"></main>
+<script>
+const D = {"q": [{"t": "Le escribiste hace tres horas y no responde. ¿Qué haces?", "o": [{"k": "c", "t": "Reviso si está en línea, releo lo que mandé y pienso qué hice mal."}, {"k": "t", "t": "Sigo con mi día. Si es importante, responderá cuando pueda."}, {"k": "r", "t": "Primero me angustio, después me enojo y pienso en no volver a escribirle."}, {"k": "s", "t": "Me digo que me da igual y me ocupo de otra cosa."}]}, {"t": "Te dice «te quiero» por primera vez.", "o": [{"k": "s", "t": "Me incomoda. Siento que todo va demasiado rápido."}, {"k": "c", "t": "Siento alivio: por fin estoy segura… por unos días."}, {"k": "t", "t": "Me alegra y lo recibo sin sobrepensarlo."}, {"k": "r", "t": "Me emociona y a la vez me da miedo que después cambie."}]}, {"t": "Después de una discusión…", "o": [{"k": "r", "t": "Digo cosas fuertes, me arrepiento y busco reconciliarme con intensidad."}, {"k": "s", "t": "Me aíslo. Necesito espacio y no quiero hablar del tema."}, {"k": "c", "t": "Necesito arreglarlo ya, aunque tenga que pedir perdón por cosas que no hice."}, {"k": "t", "t": "Me tomo un rato para calmarme y después hablo de lo que pasó."}]}, {"t": "Él quiere un fin de semana solo con sus amigos.", "o": [{"k": "t", "t": "Me parece sano y aprovecho para hacer mis planes."}, {"k": "c", "t": "Pienso que se está alejando y le pregunto varias veces si todo está bien."}, {"k": "s", "t": "Perfecto, yo también prefiero mi espacio."}, {"k": "r", "t": "Le digo que está bien, pero lo vivo como un rechazo y me distancio cuando vuelve."}]}, {"t": "Cuando una relación va bien…", "o": [{"k": "c", "t": "Igual estoy pendiente de cualquier señal de que algo va a cambiar."}, {"k": "r", "t": "Me cuesta creerlo y a veces hago algo que la pone a prueba."}, {"k": "t", "t": "La disfruto sin estar esperando que se arruine."}, {"k": "s", "t": "Empiezo a sentirme atrapada y le busco defectos."}]}, {"t": "Pedir lo que necesitas…", "o": [{"k": "s", "t": "Prefiero no necesitar nada de nadie."}, {"k": "t", "t": "Lo digo con calma, aunque a veces me cueste."}, {"k": "c", "t": "Me cuesta. Me da miedo que piense que soy demasiado."}, {"k": "r", "t": "Lo pido de golpe, cuando ya estoy desbordada."}]}, {"t": "Si alguien empieza a alejarse de ti…", "o": [{"k": "r", "t": "Me alejo yo primero, antes de que me deje."}, {"k": "c", "t": "Hago lo posible por recuperarlo, aunque me cueste mi dignidad."}, {"k": "s", "t": "Lo dejo ir rápido, sin mostrar que me dolió."}, {"k": "t", "t": "Me duele, pero no persigo a quien no quiere quedarse."}]}, {"t": "Lo que más miedo te da en una relación:", "o": [{"k": "t", "t": "Que no haya respeto mutuo."}, {"k": "s", "t": "Perder mi libertad."}, {"k": "c", "t": "Que me dejen."}, {"k": "r", "t": "Que me dejen… y también que me conozcan demasiado."}]}, {"t": "Tu tiempo libre cuando estás en pareja:", "o": [{"k": "c", "t": "Gira alrededor de cuándo podremos vernos."}, {"k": "r", "t": "Depende del día: a veces lo quiero todo con él, a veces no quiero a nadie."}, {"k": "s", "t": "Lo protejo mucho y me cuesta compartirlo."}, {"k": "t", "t": "Comparto una parte y mantengo mis planes y amistades."}]}, {"t": "Cuando piensas en tu valor…", "o": [{"k": "s", "t": "Me siento valiosa cuando no dependo de nadie."}, {"k": "c", "t": "Me siento valiosa cuando me eligen."}, {"k": "t", "t": "Sé lo que valgo, aunque haya días difíciles."}, {"k": "r", "t": "Cambia mucho según cómo me traten."}]}], "p": {"c": {"nombre": "La que persigue", "texto": "Cuando sientes distancia, te acercas más. Escribes, preguntas, buscas señales. Tu mayor miedo es que te dejen, y por eso vives atenta a cualquier cambio en su forma de tratarte.", "fuerza": "Amas con profundidad, eres leal y te comprometes de verdad.", "reto": "Que tu calma no dependa de que él responda.", "ruta": "Lee todos los módulos en orden y pon especial atención al 2 (tu ritmo emocional) y al 4 (cuando la distancia duele).", "frase": "Puedo amar sin perseguir."}, "s": {"nombre": "La que se cierra", "texto": "Cuando alguien se acerca demasiado, sientes que te falta el aire. Valoras mucho tu independencia y prefieres no necesitar a nadie. A veces te alejas justo cuando la relación se pone seria.", "fuerza": "Eres autosuficiente y sabes estar contigo misma.", "reto": "Permitir que alguien te acompañe sin sentir que pierdes tu libertad.", "ruta": "Lee todos los módulos en orden y pon especial atención al 1 (entender tu apego) y al 7 (elegir desde la calma).", "frase": "Necesitar a alguien no me hace débil."}, "r": {"nombre": "La que va y viene", "texto": "Quieres cercanía y al mismo tiempo te asusta. Hay días en que lo quieres todo y otros en que prefieres huir. Tus emociones cambian rápido y a veces ni tú entiendes por qué.", "fuerza": "Sientes con intensidad y eres muy perceptiva.", "reto": "Darte estabilidad a ti misma antes de buscarla en otra persona.", "ruta": "Lee todos los módulos en orden y pon especial atención al 2 (tu ritmo emocional) y al 5 (volver a tu centro).", "frase": "Puedo quedarme conmigo, aunque tenga miedo."}, "t": {"nombre": "La que vuelve a su centro", "texto": "Puedes sentir inseguridad, pero no te gobierna. Hablas de lo que necesitas y sabes tomar distancia sin castigar. Si tu resultado salió aquí, vas por buen camino.", "fuerza": "Confías en ti y en tu propio criterio.", "reto": "Sostener esa calma en las relaciones o los momentos que te ponen a prueba.", "ruta": "Lee todos los módulos en orden y pon especial atención al 3 (límites sin culpa) y al 7 (elegir desde la calma).", "frase": "Mi calma es mía."}}, "orden": ["c", "s", "r", "t"]};
+const app = document.getElementById('app');
+let i = 0, ans = [];
+const KEY = 'vat_test_v1';
+function save(v){ try{ localStorage.setItem(KEY, JSON.stringify(v)); }catch(e){} }
+function load(){ try{ return JSON.parse(localStorage.getItem(KEY)); }catch(e){ return null; } }
+
+function intro(){
+  const prev = load();
+  app.innerHTML = `<div class="fade">
+   <div class="kicker">Vuelve a Ti · Test de entrada</div>
+   <h1>¿Cuál es tu <i>patrón</i> en el amor?</h1>
+   <p class="lead">Diez preguntas para conocerte mejor. Elige la opción que más se parece a lo que <b>haces</b>, no a lo que te gustaría hacer.</p>
+   <button class="btn" onclick="start()">Empezar el test</button>
+   ${prev ? `<button class="btn ghost" onclick="result(load())">Ver mi último resultado</button>` : ''}
+   <p class="note">Este test no es un diagnóstico. Es un espejo para saber por dónde empezar.</p></div>`;
+}
+function start(){ i = 0; ans = []; question(); }
+function question(){
+  const q = D.q[i];
+  app.innerHTML = `<div class="fade">
+   <div class="qn">Pregunta ${i+1} de ${D.q.length}</div>
+   <div class="bar"><div style="width:${i/D.q.length*100}%"></div></div>
+   <div class="qt">${q.t}</div>
+   ${q.o.map((o,j)=>`<button class="opt ${ans[i]===o.k?'sel':''}" onclick="pick('${o.k}',this)">${o.t}</button>`).join('')}
+   ${i>0 ? '<button class="back" onclick="i--;question()">← Pregunta anterior</button>' : ''}</div>`;
+}
+function pick(k, el){
+  ans[i] = k; el.classList.add('sel');
+  setTimeout(()=>{ i++; if(i < D.q.length) question(); else finish(); }, 260);
+}
+function finish(){
+  const c = {}; D.orden.forEach(k=>c[k]=0); ans.forEach(k=>c[k]++);
+  const max = Math.max(...Object.values(c));
+  const top = D.orden.filter(k=>c[k]===max);
+  const r = {c, top, fecha: new Date().toISOString()};
+  save(r); result(r);
+}
+function perfil(k){
+  const p = D.p[k];
+  return `<div class="card fade"><span class="lab">Tu patrón</span><h2>${p.nombre}</h2><p>${p.texto}</p>
+   <span class="lab">Tu fortaleza</span><p>${p.fuerza}</p>
+   <span class="lab">Tu reto</span><p>${p.reto}</p>
+   <span class="lab">Tu ruta en la guía</span><p>${p.ruta}</p>
+   <div class="frase">«${p.frase}»</div></div>`;
+}
+function result(r){
+  if(!r){ intro(); return; }
+  app.innerHTML = `<div class="kicker">Tu resultado</div>
+   <h1>${r.top.length>1 ? 'Tienes rasgos de <i>dos patrones</i>' : 'Esto es lo que <i>muestra</i> tu test'}</h1>
+   ${r.top.length>1 ? '<p class="lead">Es normal. Lee ambos perfiles: tu patrón puede cambiar según la relación y el momento.</p>' : ''}
+   ${r.top.map(perfil).join('')}
+   <div class="scores">${D.orden.map(k=>`<div class="sc"><b>${r.c[k]}</b>${D.p[k].nombre}</div>`).join('')}</div>
+   <p class="note">Tu patrón no te define. Te muestra por dónde empezar. Ahora abre tu guía en el Módulo 1.</p>
+   <button class="btn ghost" onclick="start()">Repetir el test</button>`;
+  window.scrollTo(0,0);
+}
+intro();
+</script></body></html>
